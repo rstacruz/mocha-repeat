@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 var sinon = require('sinon');
 require('chai').use(require('sinon-chai'));
 
-describe('mocha-combine', function () {
+describe('mocha-repeat', function () {
   var mdescribe, fn, versions;
 
   beforeEach(function () {

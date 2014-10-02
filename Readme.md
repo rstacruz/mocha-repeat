@@ -1,9 +1,9 @@
-# mocha-combine
+# mocha-repeat
 
 Easily test multiple variations of something using [mocha].
 
 ```js
-var mdescribe = require('mocha-combine');
+var mdescribe = require('mocha-repeat');
 
 var libs = {
   'jquery-1.9': require('../vendor/jquery-1.9.js'),
@@ -95,7 +95,7 @@ mdescribe("Tests", stubs, function (jQuery, options) {
 
 ## Permutations
 
-You can nest calls to mocha-combine. This is great for testing combinations of 
+You can nest calls to mocha-repeat. This is great for testing combinations of 
 multiple library versions. In this example, it tests against every possble 
 combination of underscore [1.0..1.2] with backbone [1.0..1.2].
 
@@ -157,7 +157,7 @@ $ mocha -R list
 
 ### Thanks
 
-**mocha-combine** © 2014+, Rico Sta. Cruz. Released under the [MIT] License.<br>
+**mocha-repeat** © 2014+, Rico Sta. Cruz. Released under the [MIT] License.<br>
 Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
 
 > [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
@@ -165,6 +165,6 @@ Authored and maintained by Rico Sta. Cruz with help from contributors ([list][co
 > Twitter [@rstacruz](https://twitter.com/rstacruz)
 
 [MIT]: http://mit-license.org/
-[contributors]: http://github.com/rstacruz/mocha-combine/contributors
+[contributors]: http://github.com/rstacruz/mocha-repeat/contributors
 
 [mocha]: http://visionmedia.github.io/mocha

@@ -1,5 +1,5 @@
 {
-  "name": "mocha-combine",
+  "name": "mocha-repeat",
   "version": "0.0.0",
   "description": "Easily test multiple variants.",
   "main": "index.js",
