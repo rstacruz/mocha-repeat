@@ -68,6 +68,56 @@ mdescribe("Tests", stubs, function (jQuery, options) {
 
 ### Permutations
 
+You can nest calls to mocha-combine. This is great for testing combinations of 
+multiple library versions. In this example, it tests against every possble 
+combination of underscore [1.0..1.2] with backbone [1.0..1.2].
+
+```js
+var libs = {
+  underscore: {
+    '1.0': '../vendor/underscore/1.0.0.js',
+    '1.1': '../vendor/underscore/1.1.0.js',
+    '1.2': '../vendor/underscore/1.2.0.js',
+  },
+  backbone: {
+    '1.0': '../vendor/backbone/1.0.0.js',
+    '1.1': '../vendor/backbone/1.1.0.js',
+    '1.2': '../vendor/backbone/1.2.0.js',
+  },
+};
+
+var _, Backbone;
+
+mdescribe("Underscore", libs.underscore, function (upath) {
+  mdescribe("Backbone", libs.backbone, function (bpath) {
+
+    before(function () {
+      _ = require(upath);
+      Backbone = proxyquire(bpath, { underscore: _ });
+    });
+
+    it ('loads without errors', function () {
+    });
+  });
+})
+
+/* tip: https://www.npmjs.org/package/proxyquire */
 ```
-var underscore = {
+
+Output:
+
+```sh
+$ mocha -R list
+
+  . Underscore (1.0) Backbone (1.0) loads without errors
+  . Underscore (1.0) Backbone (1.1) loads without errors
+  . Underscore (1.0) Backbone (1.2) loads without errors
+  . Underscore (1.1) Backbone (1.0) loads without errors
+  . Underscore (1.1) Backbone (1.1) loads without errors
+  . Underscore (1.1) Backbone (1.2) loads without errors
+  . Underscore (1.2) Backbone (1.0) loads without errors
+  . Underscore (1.2) Backbone (1.1) loads without errors
+  . Underscore (1.2) Backbone (1.2) loads without errors
+
+  9 passing (120ms)
 ```
