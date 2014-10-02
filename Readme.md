@@ -45,7 +45,9 @@ describe("Tests (jquery-2.1)", function () {
 });
 ```
 
-### Splatting
+<br>
+
+## Splatting
 
 If the values are arrays, they will be spread across the function's arguments.
 In this example, the function's 2 arguments (`jQuery, options`) will be 
@@ -66,7 +68,9 @@ mdescribe("Tests", stubs, function (jQuery, options) {
 });
 ```
 
-### Permutations
+<br>
+
+## Permutations
 
 You can nest calls to mocha-combine. This is great for testing combinations of 
 multiple library versions. In this example, it tests against every possble 
@@ -91,17 +95,20 @@ var _, Backbone;
 mdescribe("Underscore", libs.underscore, function (upath) {
   mdescribe("Backbone", libs.backbone, function (bpath) {
 
+    // load the libraries
+    // ...tip: https://www.npmjs.org/package/proxyquire
     before(function () {
       _ = require(upath);
       Backbone = proxyquire(bpath, { underscore: _ });
     });
 
     it ('loads without errors', function () {
+      expect(_).is.a('function');
+      expect(Backbone).is.a('object');
     });
   });
 })
 
-/* tip: https://www.npmjs.org/package/proxyquire */
 ```
 
 Output:
@@ -121,3 +128,18 @@ $ mocha -R list
 
   9 passing (120ms)
 ```
+
+
+<br>
+
+### Thanks
+
+**mocha-combine** © 2014+, Rico Sta. Cruz. Released under the [MIT] License.<br>
+Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
+
+> [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
+> GitHub [@rstacruz](https://github.com/rstacruz) &nbsp;&middot;&nbsp;
+> Twitter [@rstacruz](https://twitter.com/rstacruz)
+
+[MIT]: http://mit-license.org/
+[contributors]: http://github.com/rstacruz/mocha-combine/contributors
