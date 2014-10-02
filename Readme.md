@@ -1,6 +1,7 @@
 # mocha-repeat
 
-Easily test multiple variations of something using [mocha].
+Loop tests through diferrent variations of data in [mocha].js. Perfect for 
+testing against multiple versions of 3rd-party libraries.
 
 ```js
 var mdescribe = require('mocha-repeat');
@@ -35,6 +36,14 @@ describe("Tests (jquery-2.1)", function () {
   var jQuery = require('../vendor/jquery-2.0.js');
   /* ..tests.. */
 });
+```
+
+<br>
+
+### Install
+
+```sh
+$ npm i --save-dev mocha-repeat
 ```
 
 <br>
