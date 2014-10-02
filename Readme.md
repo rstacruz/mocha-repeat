@@ -1,6 +1,6 @@
 # mocha-combine
 
-Easily test multiple variants.
+Easily test multiple variations of something using [mocha].
 
 ```js
 var mdescribe = require('mocha-combine');
@@ -13,35 +13,58 @@ var libs = {
 
 mdescribe("Tests", libs, function (jQuery) {
 
-  // tests here. `jquery` will be the values of stubs
-  it('test one', function () { expect(jQuery).to.be.a('function'); });
-  it('test two', function () { expect(jQuery).not.be.undefined; });
+  /* ..tests.. */
 
 });
 ```
 
-This is the same as:
+This will be expanded to:
 
 ```js
 describe("Tests (jquery-1.9)", function () {
   var jQuery = require('../vendor/jquery-1.9.js');
-
-  it('test one', function () { expect(jQuery).to.be.a('function'); });
-  it('test two', function () { expect(jQuery).not.be.undefined; });
+  /* ..tests.. */
 });
 
 describe("Tests (jquery-2.0)", function () {
   var jQuery = require('../vendor/jquery-2.0.js');
-
-  it('test one', function () { expect(jQuery).to.be.a('function'); });
-  it('test two', function () { expect(jQuery).not.be.undefined; });
+  /* ..tests.. */
 });
 
 describe("Tests (jquery-2.1)", function () {
   var jQuery = require('../vendor/jquery-2.0.js');
+  /* ..tests.. */
+});
+```
 
-  it('test one', function () { expect(jQuery).to.be.a('function'); });
-  it('test two', function () { expect(jQuery).not.be.undefined; });
+<br>
+
+### Why?
+
+This effect is easily achievable in plain JavaScript, though the resulting code 
+will be more verbose.
+
+```js
+libs = { ... };
+for (var version in libs) {
+  if (libs.hasOwnProperty(version)) {
+    var jQuery = libs[version];
+
+    (function (jQuery, version) {
+      describe("Test (" + version + ")", function () {
+        /* ..tests.. */
+      });
+    })(jQuery, version);
+  }
+}
+```
+
+It's easier to write it this way:
+
+```js
+libs = { ... };
+mdescribe("Test", libs, function (jQuery, version) {
+  /* ..tests.. */
 });
 ```
 
@@ -143,3 +166,5 @@ Authored and maintained by Rico Sta. Cruz with help from contributors ([list][co
 
 [MIT]: http://mit-license.org/
 [contributors]: http://github.com/rstacruz/mocha-combine/contributors
+
+[mocha]: http://visionmedia.github.io/mocha
