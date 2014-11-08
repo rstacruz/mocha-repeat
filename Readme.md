@@ -85,7 +85,7 @@ If the values are arrays, they will be spread across the function's arguments.
 In this example, the function's 2 arguments (`jQuery, options`) will be 
 populated by the array items.
 
-```
+```js
 var libs = {
   'jquery-1.9': [ require('../vendor/jquery-1.9.js'), { legacy: true } ],
   'jquery-2.0': [ require('../vendor/jquery-2.0.js'), { } ],
