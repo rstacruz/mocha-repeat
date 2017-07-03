@@ -176,4 +176,4 @@ Authored and maintained by Rico Sta. Cruz with help from contributors ([list][co
 [MIT]: http://mit-license.org/
 [contributors]: http://github.com/rstacruz/mocha-repeat/contributors
 
-[mocha]: http://visionmedia.github.io/mocha
+[mocha]: http://mochajs.org/
